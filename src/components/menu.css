@@ -1,0 +1,125 @@
+.micro-layout-sider {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.micro-sider {
+  overflow: hidden;
+  flex: 0 0 208px;
+  max-width: 208px;
+  min-width: 208px;
+  width: 208px;
+  background: #001529;
+}
+
+.micro-sider-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
+  background-color: #001529;
+  border-right: 0;
+  transition: background-color 0.3s, min-width 0.3s,
+    max-width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.micro-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+  transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.micro-logo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+}
+
+.micro-logo img {
+  display: inline-block;
+  height: 32px;
+  vertical-align: middle;
+}
+
+.micro-logo h1 {
+  display: inline-block;
+  height: 32px;
+  margin: 0 0 0 12px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 32px;
+  vertical-align: middle;
+}
+
+.micro-menu {
+  color: #fff;
+}
+
+.micro-menu-submenu-title {
+  padding-left: 24px;
+}
+
+.micro-menu-item {
+  height: 40px;
+  line-height: 40px;
+}
+
+.micro-menu-item-title {
+  color: #fff;
+}
+
+.micro-menu-submenu {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 16px;
+  padding-left: 48px;
+  margin: 0 4px;
+  outline: none;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.micro-menu-submenu:focus {
+  color: #fff;
+}
+
+.micro-menu-submenu-selected {
+  color: #fff;
+  background-color: #1890ff;
+}
+
+.micro-menu-submenu-title .microicon {
+  min-width: 14px;
+  margin-right: 10px;
+  font-size: 14px;
+  transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1),
+    margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s;
+}
+
+.micro-menu-submenu-title .microicon + span {
+  opacity: 1;
+  transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+    width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s;
+}
+
+.microicon {
+  display: inline-block;
+  color: inherit;
+  font-style: normal;
+  line-height: 0;
+  text-align: center;
+  text-transform: none;
+  vertical-align: -0.125em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

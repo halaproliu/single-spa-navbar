@@ -14,7 +14,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && concurrently yarn:test yarn:lint"
+      "pre-commit": "pretty-quick --staged && concurrently yarn:lint"
     }
   },
   "devDependencies": {
@@ -47,6 +47,9 @@
     "webpack-merge": "^5.4.0"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
+    "@react-aria/menu": "^3.2.1",
+    "@react-aria/separator": "^3.1.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }
