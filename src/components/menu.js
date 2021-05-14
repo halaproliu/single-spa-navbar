@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTreeState } from "@react-stately/tree";
 import { useFocus } from "@react-aria/interactions";
 import { mergeProps } from "@react-aria/utils";
@@ -12,6 +12,7 @@ export default function Menu(props) {
   let ref = React.useRef();
   let { menuProps } = useMenu(props, state, ref);
   let { selectedKey } = props;
+  const [openKeys, setOpenKeys] = useState([]);
 
   return (
     <ul
@@ -21,6 +22,9 @@ export default function Menu(props) {
         padding: 0,
         listStyle: "none",
         maxWidth: 250,
+        position: "relative",
+        zIndex: 10,
+        margin: 0,
       }}
     >
       {[...state.collection].map((item) => (
@@ -34,7 +38,7 @@ export default function Menu(props) {
     </ul>
   );
 
-  function MenuSection({ section, state, onAction }) {
+  function MenuSection({ section, state, onAction, selectedKey }) {
     let { itemProps, headingProps, groupProps } = useMenuSection({
       heading: section.rendered,
       "aria-label": section["aria-label"],
@@ -73,7 +77,10 @@ export default function Menu(props) {
                 />
                 <span class="micro-menu-item-title">{section.rendered}</span>
               </span>
-              <i className=""></i>
+              <i
+                class="fa fa-angle-up micro-menu-submenu-arrow"
+                aria-hidden="true"
+              ></i>
             </div>
           )}
           <ul

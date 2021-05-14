@@ -67,6 +67,7 @@
 
 .micro-menu-submenu-title {
   padding-left: 24px;
+  position: relative;
 }
 
 .micro-menu-item {
@@ -105,6 +106,10 @@
     margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s;
 }
 
+.micro-menu-item-title {
+  transition: none;
+}
+
 .micro-menu-submenu-title .microicon + span {
   opacity: 1;
   transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
@@ -122,4 +127,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.micro-menu-submenu-arrow {
+  color: #fff;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
 }

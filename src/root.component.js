@@ -6,6 +6,7 @@ import logo from "./assets/imgs/logo.svg";
 
 export default function Root(props) {
   const disabledKeys = [];
+  const expandedKeys = [];
   const [selectedKey, setSelectedKey] = useState("");
   const onAction = (key) => {
     setSelectedKey(key);
@@ -24,6 +25,7 @@ export default function Root(props) {
           selectedKey={selectedKey}
           aria-label="Actions"
           disabledKeys={disabledKeys}
+          expandedKeys={expandedKeys}
         >
           <Section title="Dashboard">
             <Item key="one">分析页</Item>
