@@ -4,13 +4,15 @@ import Menu from "./components/menu";
 import "./components/menu.css";
 import logo from "./assets/imgs/logo.svg";
 
-export default function Root(props) {
+export default function Root() {
   const disabledKeys = [];
-  const expandedKeys = [];
+  const expandedKeys = new Set();
+  expandedKeys.add("Dashboard");
   const [selectedKey, setSelectedKey] = useState("");
   const onAction = (key) => {
     setSelectedKey(key);
   };
+
   return (
     <div class="micro-layout-sider">
       <aside class="micro-sider micro-sider-fixed">
@@ -27,10 +29,15 @@ export default function Root(props) {
           disabledKeys={disabledKeys}
           expandedKeys={expandedKeys}
         >
-          <Section title="Dashboard">
+          <Section title="Dashboard" key="Dashboard">
             <Item key="one">分析页</Item>
             <Item key="two">监控页</Item>
             <Item key="three">工作台</Item>
+          </Section>
+          <Section title="Dashboard1" key="Dashboard1">
+            <Item key="one1">分析页</Item>
+            <Item key="two1">监控页</Item>
+            <Item key="three1">工作台</Item>
           </Section>
         </Menu>
       </aside>

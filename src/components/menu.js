@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTreeState } from "@react-stately/tree";
 import { useFocus } from "@react-aria/interactions";
 import { mergeProps } from "@react-aria/utils";
 import { useMenu, useMenuItem, useMenuSection } from "@react-aria/menu";
-import { useSeparator } from "@react-aria/separator";
 import { DashboardOutlined } from "@ant-design/icons";
 
 export default function Menu(props) {
@@ -12,7 +11,6 @@ export default function Menu(props) {
   let ref = React.useRef();
   let { menuProps } = useMenu(props, state, ref);
   let { selectedKey } = props;
-  const [openKeys, setOpenKeys] = useState([]);
 
   return (
     <ul
@@ -38,22 +36,23 @@ export default function Menu(props) {
     </ul>
   );
 
-  function MenuSection({ section, state, onAction, selectedKey }) {
+  function MenuSection({ section, state, onAction }) {
     let { itemProps, headingProps, groupProps } = useMenuSection({
       heading: section.rendered,
       "aria-label": section["aria-label"],
     });
 
-    let { separatorProps } = useSeparator({
-      elementType: "li",
-    });
+    let onItemAction = (key) => {
+      state.selectionManager.extendSelection(key);
+      onAction(key);
+    };
 
     // If the section is not the first, add a separator element.
     // The heading is rendered inside an <li> element, which contains
     // a <ul> with the child items.
     return (
       <>
-        {section.key !== state.collection.getFirstKey() && (
+        {/* {section.key !== state.collection.getFirstKey() && (
           <li
             {...separatorProps}
             style={{
@@ -61,7 +60,7 @@ export default function Menu(props) {
               margin: "2px 5px",
             }}
           />
-        )}
+        )} */}
         <li {...itemProps}>
           {section.rendered && (
             <div {...headingProps} className="micro-menu-submenu-title">
@@ -75,12 +74,23 @@ export default function Menu(props) {
                     fontSize: 14,
                   }}
                 />
-                <span class="micro-menu-item-title">{section.rendered}</span>
+                <span className="micro-menu-item-title">
+                  {section.rendered}
+                </span>
               </span>
               <i
-                class="fa fa-angle-up micro-menu-submenu-arrow"
+                className="fa fa-angle-up micro-menu-submenu-arrow"
                 aria-hidden="true"
               ></i>
+              {/* {
+                openKeys.has(section.key) ? (<i
+                  className="fa fa-angle-up micro-menu-submenu-arrow"
+                  aria-hidden="true"
+                ></i>) : (<i
+                  className="fa fa-angle-down micro-menu-submenu-arrow"
+                  aria-hidden="true"
+                ></i>)
+              } */}
             </div>
           )}
           <ul
@@ -95,7 +105,7 @@ export default function Menu(props) {
                 key={node.key}
                 item={node}
                 state={state}
-                onAction={onAction}
+                onAction={onItemAction}
               />
             ))}
           </ul>
